@@ -1,4 +1,4 @@
-Sub yearstocks()
+Sub alphatest()
 
     'For going through all worksheets
     For Each ws In Worksheets
@@ -42,7 +42,7 @@ Sub yearstocks()
     open_amt = 2
     
     'Getting the ticker
-    lastrow = ws.Cells(Rows.Count, 1).End(xlUp).Row
+    lastrow = ws.Cells(rows.Count, 1).End(xlUp).Row
         
         For i = 2 To lastrow
         
@@ -81,4 +81,31 @@ Sub yearstocks()
         open_amt = i + 1
         End If
     Next i
+    
+    
+    'This is for "Greatest % Inc/Dec. Getting column & row.
+        For i = 2 To lastrow
+            If ws.Range("K" & i).Value > ws.Range("Q2").Value Then
+                ws.Range("Q2").Value = ws.Range("K" & i).Value
+                ws.Range("P2").Value = ws.Range("I" & i).Value
+            End If
+            
+        If ws.Range("K" & i).Value < ws.Range("Q3").Value Then
+            ws.Range("Q3").Value = ws.Range("K" & i).Value
+                    ws.Range("P3").Value = ws.Range("I" & i).Value
+            End If
+
+        If ws.Range("L" & i).Value > ws.Range("Q4").Value Then
+                    ws.Range("Q4").Value = ws.Range("L" & i).Value
+                    ws.Range("P4").Value = ws.Range("I" & i).Value
+            End If
+
+            Next i
+            '2 decimal places like the screenshots in Canvas
+        ws.Range("Q2").NumberFormat = "0.00%"
+        ws.Range("Q3").NumberFormat = "0.00%"
+     
+    Next ws
+    
+End Sub
     
